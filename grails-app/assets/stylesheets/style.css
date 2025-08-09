@@ -1,0 +1,14 @@
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: darkblue;
+}
+
+.highlight {
+    background-color: yellow;
+    padding: 5px;
+    border-radius: 4px;
+}

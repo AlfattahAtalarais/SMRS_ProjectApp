@@ -9,59 +9,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
 
-    <asset:stylesheet src="application.css"/>
+%{--    <asset:stylesheet src="application.css"/>--}%
+    <asset:stylesheet src="style.css"/>
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <g:layoutHead/>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark navbar-static-top" role="navigation">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/#"><asset:image src="grails.svg" alt="Grails Logo"/></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" aria-expanded="false" style="height: 0.8px;" id="navbarContent">
-            <ul class="nav navbar-nav ml-auto">
-                <g:pageProperty name="page.nav"/>
-            </ul>
-        </div>
-    </div>
-</nav>
 
 <g:layoutBody/>
 
-<div class="footer" role="contentinfo">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <a href="https://guides.grails.org" target="_blank">
-                    <asset:image src="advancedgrails.svg" alt="Grails Guides" class="float-left"/>
-                </a>
-                <strong class="centered"><a href="https://guides.grails.org" target="_blank">Grails Guides</a></strong>
-                <p>Building your first Grails app? Looking to add security, or create a Single-Page-App? Check out the <a href="https://guides.grails.org" target="_blank">Grails Guides</a> for step-by-step tutorials.</p>
 
-            </div>
-            <div class="col">
-                <a href="https://docs.grails.org" target="_blank">
-                    <asset:image src="documentation.svg" alt="Grails Documentation" class="float-left"/>
-                </a>
-                <strong class="centered"><a href="https://docs.grails.org" target="_blank">Documentation</a></strong>
-                <p>Ready to dig in? You can find in-depth documentation for all the features of Grails in the <a href="https://docs.grails.org" target="_blank">User Guide</a>.</p>
-
-            </div>
-            <div class="col">
-                <a href="https://slack.grails.org" target="_blank">
-                    <asset:image src="slack.svg" alt="Grails Slack" class="float-left"/>
-                </a>
-                <strong class="centered"><a href="https://slack.grails.org" target="_blank">Join the Community</a></strong>
-                <p>Get feedback and share your experience with other Grails developers in the community <a href="https://slack.grails.org" target="_blank">Slack channel</a>.</p>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div id="spinner" class="spinner" style="display:none;">
     <g:message code="spinner.alt" default="Loading&hellip;"/>
