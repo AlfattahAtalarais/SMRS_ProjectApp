@@ -1,0 +1,37 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head><title>Categories</title></head>
+<body>
+<h2>Category List</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Slug</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <g:each in="${categoryList}" var="cat">
+        <tr>
+            <td>${cat.name}</td>
+            <td>${cat.slug}</td>
+            <td>${cat.description}</td>
+            <td>
+                <g:link action="show" id="${cat.id}">View</g:link> |
+                <g:link action="edit" id="${cat.id}">Edit</g:link> |
+                <g:form action="delete" method="DELETE">
+                    <input type="hidden" name="id" value="${cat.id}"/>
+                    <g:submitButton name="delete" value="Delete"/>
+                </g:form>
+            </td>
+        </tr>
+    </g:each>
+    </tbody>
+</table>
+
+<g:link action="create">+ Add New Category</g:link>
+</body>
+</html>
