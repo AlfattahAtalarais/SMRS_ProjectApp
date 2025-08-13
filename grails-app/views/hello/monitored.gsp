@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Windows 11
-  Date: 09/08/2025
-  Time: 14:57
---%>
-
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -19,31 +11,41 @@
 	<div class="title">
 		<h1>Monitored Sites</h1>
 	</div>
-<div id="add-btn">
-
-</div>
+	
 	<div class="content">
-		<a href="${createLink(controller: 'hello', action: 'add')}">Add</a>
-		<a href="${createLink(controller: 'hello', action: 'edit')}">Edit</a>
-		<table border="1">
-			<g:each in="${categoryLIst}" var="cat">
+		<div class="table-header">
+			<g:link controller="hello" action="add" class="add-btn">Add</g:link>
+		</div>
+		
+		<table >
+			<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>URL</th>
+				<th>Actions</th>
+			</tr>
+			</thead>
+			<tbody>
+			<g:each in="${urlList}" var="url">
 				<tr>
-					<td>${cat.id}</td>
-					<td>${cat.name}</td>
-					<td>${cat.url}</td>
-					<td>
-						<g:link action="edit" id="${cat.id}" class="btn-edit">Edit</g:link>
-						<g:form action="delete" method="DELETE" style="display:inline;">
-							<input type="hidden" name="id" value="${cat.id}"/>
-							<g:submitButton name="delete" value="Delete"/>
+					<td>${url.id}</td>
+					<td>${url.name}</td>
+					<td><a href="${url.url}" target="_blank">${url.url}</a></td>
+					<td class="action">
+						<g:link action="edit" id="${url.id}" class="btn-edit">Edit</g:link>
+						<g:form controller="hello" action="delete" id="${url.id}" method="DELETE"  style="display: inline;">
+							<input type="submit" value="Delete" class="btn-delete"
+								   onclick="return confirm('Yakin ingin menghapus website ${url.name}?')"/>
 						</g:form>
+
 					</td>
 				</tr>
 			</g:each>
+			</tbody>
 		</table>
 	</div>
 </div>
 
 </body>
 </html>
-

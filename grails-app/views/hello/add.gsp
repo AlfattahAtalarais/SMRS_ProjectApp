@@ -16,27 +16,25 @@
 <body>
 <div class="container">
 	<div class="form-add">
-		<form action="${createLink(controller:'website', action:'save')}" method="POST">
+		<form action="${createLink(controller:'hello', action:'save')}" method="POST">
 			<div class="form-title">
 				<h2>Add Site Form</h2>
 			</div>
 
 			<div class="require-form">
-				<form action="${createLink(controller: 'hello', action: 'save')}" method="POST">
-					<label for="urlName">URL Name</label>
-					<input type="text" name="urlName" value="${Url?.urlName ?: ''}"/>
+				<label for="urlName">URL Name</label>
+				<g:textField name="urlName" id="urlName" value="${url?.name}" required="true"/>
 
-					<label for="url">URL</label>
-					<input type="text" name="url" value="${Url?.url ?: ''}"/>
 
-					<button type="submit" action="">Save</button>
-					<a href="${createLink(controller: 'hello', action: 'monitored')}">Cancel</a>
-				</form>
+				<label for="url">URL</label>
+				<g:textField name="url" id="url" value="${url?.url}" required="true"/>
+
+				<g:submitButton name="save" value="Save"/>
+				<g:link controller="hello" action="monitored">Cancel</g:link>
+
 			</div>
 		</form>
 	</div>
-
-
 </div>
 
 </body>

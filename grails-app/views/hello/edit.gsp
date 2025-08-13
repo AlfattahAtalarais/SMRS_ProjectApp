@@ -9,28 +9,31 @@
 <html>
 <head>
 	<meta name="layout" content="main"/>
-	<asset:stylesheet src="add.css"/>
+	<asset:stylesheet src="edit.css"/>
 	<title>Edit Form</title>
 </head>
 
 <body>
 <div class="container">
-	<div class="form-add">
-		<form action="${createLink(controller:'website', action:'save')}" method="POST">
+	<div class="form-edit">
+		<g:form action="update" method="PUT">
+			<g:hiddenField name="id" value="${url?.id}"/>
 			<div class="form-title">
 				<h2>Edit Form</h2>
 			</div>
 
 			<div class="require-form">
-				<label for="name">Name Website</label>
-				<input type="text" id="name" name="name" placeholder="Enter New Website Name" required>
+				<label for="name">URL Name</label>
+				<g:textField name="name" id="name" value="${url?.name}" required="true"/>
 
-				<label for="url">URL Site</label>
-				<input type="url" id="url" name="url" placeholder="https://example.com" required>
+				<label for="url">URL</label>
+				<g:textField name="url" id="url" value="${url?.url}" required="true"/>
 
-				<button type="submit">Save</button>
+				<g:submitButton name="update" value="Save"/>
+				<g:link controller="hello" action="monitored">Cancel</g:link>
+
 			</div>
-		</form>
+		</g:form>
 	</div>
 
 

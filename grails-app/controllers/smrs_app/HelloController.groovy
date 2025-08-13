@@ -1,19 +1,24 @@
 package smrs_app
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import smrs_app.Url
+import grails.gorm.transactions.Transactional
+
+
 
 class HelloController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def overview(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Url.list(params), model:[urlCount: Url.count()]
-
-        [msg: "Ini halaman overview"]
+        def urlList = Url.list(params)
+        [urlList: urlList, urlCount: Url.count(), msg: " Ini halaman overview"]
     }
 
     def monitored() {
-        [msg: "Ini halaman monitored sites"]
+        // Ambil semua data URL dari database untuk ditampilkan
+        def urlList = Url.list()
+        [urlList: urlList, msg: "Ini halaman monitored sites"]
     }
 
     def report() {
@@ -21,48 +26,56 @@ class HelloController {
     }
 
     def add() {
-        respond new Url(params)
+        [url: new Url(params)]
     }
 
-    def save(Url url) {
-        if (url == null) {
-            notFound()
-            return
+    @Transactional
+    def save() {
+        def url = new Url()
+        url.name = params.urlName
+        url.url = params.url
+
+        if (url.save(flush: true)) {
+            flash.message = "Website '${url.name}' berhasil disimpan"
+        } else {
+            flash.error = "Gagal menyimpan data"
         }
 
-        try {
-            url.save(flush: true)
-        } catch (ValidationException e) {
-            respond url.errors, view:'create'
-            return
-        }
+        redirect(controller:'hello',action: 'monitored')
 
-        flash.message = "Url '${url.title}' created successfully"
-        redirect action: "show", id: url.id
     }
 
     def edit(Long id) {
-        respond Url.get(id)
+        def url = Url.get(id)
+        if (!url) {
+            notFound()
+            return
+        }
+        [url: url]
     }
 
-    def update(Url url) {
-        if (url == null) {
+    @Transactional
+    def update(Long id) {
+        def url = Url.get(id)
+        if (!url) {
             notFound()
             return
         }
 
-        try {
-            url.save(flush: true)
-        } catch (ValidationException e) {
-            respond url.errors, view:'edit'
-            return
+        url.name = params.name
+        url.url = params.url
 
+        if (url.save(flush: true)) {
+            flash.message = "Website '${url.name}' berhasil diupdate"
+            redirect(action: 'monitored')
+        } else {
+            flash.error = "Gagal mengupdate data"
+            render(view: 'edit', model: [url: url])
         }
 
-        flash.message = "Url '${url.title}' updated successfully"
-        redirect action: "show", id: url.id
     }
 
+    @Transactional
     def delete(Long id) {
         def url = Url.get(id)
         if (url == null) {
@@ -71,13 +84,12 @@ class HelloController {
         }
 
         url.delete(flush: true)
-        flash.message = "Url deleted successfully"
-        redirect action: "index"
+        flash.message = "Website berhasil dihapus"
+        redirect(controller: 'hello', action: 'monitored')
     }
 
     protected void notFound() {
-        flash.message = "Url not found with id ${params.id}"
-        redirect action: "index"
+        flash.message = "Website tidak ditemukan"
+        redirect(controller: 'hello', action: 'monitored')
     }
 }
-
