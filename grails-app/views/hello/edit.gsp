@@ -29,13 +29,14 @@
 				<label for="url">URL</label>
 				<g:textField name="url" id="url" value="${url?.url}" required="true"/>
 
-				<g:submitButton name="update" value="Save"/>
-				<g:link controller="hello" action="monitored">Cancel</g:link>
+				<div class="button-area">
+					<g:submitButton name="update" value="Save"/>
+					<g:link controller="hello" action="monitored" class="btn-cancel">Cancel</g:link>
+				</div>
 
 			</div>
 		</g:form>
 	</div>
-
 
 </div>
 

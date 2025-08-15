@@ -9,6 +9,14 @@ import grails.gorm.transactions.Transactional
 class HelloController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def beforeInterceptor = {
+        if (!session.user) {
+            redirect(controller: 'login', action: 'login')
+            return false
+        }
+    }
+
+
     def overview(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         def urlList = Url.list(params)

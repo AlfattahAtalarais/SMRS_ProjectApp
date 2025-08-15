@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .container{
     display: flex;
     flex-direction: column;
@@ -6,7 +12,7 @@
     height: 100vh;
     margin-top: 50px;
 
-    .form-edit{
+    .form-add{
         width: 500px;
         background-color: #F6F1F1;
         border: 1px solid #146C94;
@@ -25,7 +31,7 @@
         .require-form{
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             margin: 0 auto;
             padding: 20px;
@@ -46,23 +52,49 @@
                 box-sizing: border-box;
             }
 
-            button, input[ type = submit]{
-                margin-top: 30px;
-                border-radius: 3px;
-                cursor: pointer;
-                font-size: 15px;
-                font-weight: 600;
-                color: #F6F1F1;
-                border: 1px solid white;
-                background-color: #146C94;
-                padding: 5px 150px;
+            .button-area{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
 
-                &:hover{
-                    border: 1px solid #146C94;
-                    background-color: #ffffff;
-                    color: #146C94;
+                button, input[ type = submit], .btn-cancel{
+                    width: 100%;
+                    margin-top: 30px;
+                    border-radius: 3px;
+                    cursor: pointer;
+                    font-size: 15px;
+                    font-weight: 600;
+                    color: #F6F1F1;
+                    border: 1px solid white;
+                    background-color: #146C94;
+                    padding: 5px 150px;
+                    text-decoration: none;
+
+                    &:hover{
+                        border: 1px solid #146C94;
+                        background-color: #ffffff;
+                        color: #146C94;
+                        transition: 0.3s;
+                    }
+                }
+
+                .btn-cancel{
+                    width: 100%;
+                    margin-top: 15px;
+                    background-color: #E43636;
+                    color: white;
+
+                    &:hover{
+                        color: #E43636 !important;
+                        border: 1px solid #E43636 !important;
+                        background-color: #FFFFFF !important;
+                        transition: 0.3s;
+                    }
+
                 }
             }
+
         }
     }
 }

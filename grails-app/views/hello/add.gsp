@@ -16,7 +16,7 @@
 <body>
 <div class="container">
 	<div class="form-add">
-		<form action="${createLink(controller:'hello', action:'save')}" method="POST">
+		<form action="${createLink(controller: 'hello', action: 'save')}" method="POST">
 			<div class="form-title">
 				<h2>Add Site Form</h2>
 			</div>
@@ -29,8 +29,10 @@
 				<label for="url">URL</label>
 				<g:textField name="url" id="url" value="${url?.url}" required="true"/>
 
-				<g:submitButton name="save" value="Save"/>
-				<g:link controller="hello" action="monitored">Cancel</g:link>
+				<div class="button-area">
+					<g:submitButton name="save" value="Save"/>
+					<g:link controller="hello" action="monitored" class="btn-cancel">Cancel</g:link>
+				</div>
 
 			</div>
 		</form>

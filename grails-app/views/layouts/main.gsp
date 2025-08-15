@@ -27,19 +27,32 @@
     </div>
 </div>
 <nav class="nav-links">
-    <div class="nav-item">
-        <ul>
-            <li>
-                <a href="${createLink(controller: 'hello', action: 'overview')}">Overview</a>
-            </li>
-            <li>
-                <a href="${createLink(controller: 'hello', action: 'monitored')}">Monitored Sites</a>
-            </li>
-            <li>
-                <a href="${createLink(controller: 'hello', action: 'report')}">Report & Issues</a>
-            </li>
-        </ul>
-    </div>
+	<div class="left-area">
+		<div class="nav-item">
+			<ul>
+				<li>
+					<a href="${createLink(controller: 'hello', action: 'overview')}">Overview</a>
+				</li>
+				<li>
+					<a href="${createLink(controller: 'hello', action: 'monitored')}">Monitored Sites</a>
+				</li>
+				<li>
+					<a href="${createLink(controller: 'hello', action: 'report')}">Report & Issues</a>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+	<div class="right-area">
+		<div class="nav-item">
+			<ul>
+				<li>
+					<a href="${createLink(controller: 'hello', action: 'logout')}">Logout</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
 </nav>
 
 <g:layoutBody/>
