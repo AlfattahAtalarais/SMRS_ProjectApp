@@ -83,27 +83,25 @@
             google.accounts.id.initialize({
                 client_id: "40581836864-3bu5riuquuir497l491vslm6rfvibk42.apps.googleusercontent.com",
                 callback: handleCredentialResponse,
-                auto_select: true, // otomatis pilih akun kalau pernah login
+                auto_select: true,
                 cancel_on_tap_outside: false,
-                use_fedcm_for_prompt: true // Enable FedCM for better UX
+                use_fedcm_for_prompt: true
             });
 
-            // Render tombol Sign In dengan styling yang sesuai
+            // Render tombol Sign In
             google.accounts.id.renderButton(
                 document.getElementById("googleSignInDiv"),
                 {
-                    theme: "filled_blue", // Sesuaikan dengan theme CSS
+                    theme: "outline",
                     size: "large",
-                    width: 350, // Sesuaikan dengan lebar form
+                    width: 350,
                     text: "signin_with",
                     shape: "rectangular"
                 }
             );
 
-            // Munculkan Google One Tap
             google.accounts.id.prompt((notification) => {
                 console.log('One Tap notification:', notification);
-                // Handle One Tap notifications jika diperlukan
             });
 
         } catch (error) {
@@ -111,6 +109,28 @@
             showAlert('error', 'Failed to initialize Google Sign-In. Please refresh the page.');
         }
     }
+
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            // Halaman dimuat dari cache, reload
+            window.location.reload();
+        }
+    });
+
+    // Check session saat halaman dimuat
+    window.addEventListener('load', function() {
+        // Kalau sudah ada session.user, redirect ke overview
+        fetch("${createLink(controller: 'login', action: 'checkAuth')}")
+            .then(res => res.json())
+            .then(data => {
+                if (data.authenticated) {
+                    window.location.href = "${createLink(controller: 'hello', action: 'overview')}";
+                }
+            })
+            .catch(error => {
+                // Ignore error, tetap di halaman login
+            });
+    });
 </script>
 </body>
 </html>

@@ -47,7 +47,7 @@
 		<div class="nav-item">
 			<ul>
 				<li>
-					<a href="${createLink(controller: 'hello', action: 'logout')}">Logout</a>
+					<a href="${createLink(controller: 'login', action: 'logout')}">Logout</a>
 				</li>
 			</ul>
 		</div>
