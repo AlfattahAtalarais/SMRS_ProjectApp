@@ -1,20 +1,13 @@
 package smrs_app
+
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 import smrs_app.Url
 import grails.gorm.transactions.Transactional
 
 
-
 class HelloController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
-    def beforeInterceptor = {
-        if (!session.user) {
-            redirect(controller: 'login', action: 'login')
-            return false
-        }
-    }
 
 
     def overview(Integer max) {
@@ -44,12 +37,14 @@ class HelloController {
         url.url = params.url
 
         if (url.save(flush: true)) {
+
             flash.message = "Website '${url.name}' berhasil disimpan"
         } else {
+
             flash.error = "Gagal menyimpan data"
         }
 
-        redirect(controller:'hello',action: 'monitored')
+        redirect(controller: 'hello', action: 'monitored')
 
     }
 

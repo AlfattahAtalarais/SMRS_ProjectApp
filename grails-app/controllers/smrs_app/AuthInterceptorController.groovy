@@ -29,12 +29,5 @@ class AuthInterceptor {
         return true
     }
 
-    boolean after() {
-        // Optional: Logic setelah action dieksekusi
-        return true
-    }
 
-    void afterView() {
-        // Optional: Logic setelah view di-render
-    }
 }

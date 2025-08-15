@@ -3,32 +3,28 @@
 <head>
 	<meta name="google-signin-client_id"
 		  content="40581836864-3bu5riuquuir497l491vslm6rfvibk42.apps.googleusercontent.com">
-	<meta name="layout" content="main"/>
 	<asset:stylesheet src="login.css"/>
 	<script src="https://accounts.google.com/gsi/client" async defer></script>
-	<title>Login - Website Monitoring</title>
+	<title>Login - Website Monitoring & Reporting System</title>
 </head>
 
 <body>
 <div class="container">
 	<div class="form-login">
 		<div class="form-title">
-			<h2>Website Monitoring System</h2>
+			<h2>Website Monitoring & Reporting System</h2>
 		</div>
 
 		<div class="login-content">
-			<!-- Alert Container -->
 			<div id="alert-container">
-				<!-- Alert akan muncul di sini jika ada error -->
 			</div>
 
 			<!-- Google Sign In Button -->
 			<div id="googleSignInDiv" class="g_id_signin"></div>
 
-			<!-- Manual Login (Optional) -->
-			<div class="manual-login">
+			<div class="messagetext">
 				<p>
-					Sign in with your Google account only<span>@fairtech.com.sg</span>
+					Just sign in with your <span>@fairetch.com.sg</span> organizational account.
 				</p>
 			</div>
 
@@ -38,8 +34,6 @@
 
 <script>
     function handleCredentialResponse(response) {
-        // Show loading state
-        showAlert('info', 'Processing login...');
 
         fetch("${createLink(controller: 'login', action: 'googleCallback')}", {
             method: "POST",
@@ -117,14 +111,6 @@
             showAlert('error', 'Failed to initialize Google Sign-In. Please refresh the page.');
         }
     }
-
-    // Optional: Add keyboard support for accessibility
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
-            // Show debug info when DevTools shortcut is pressed
-            toggleDebugInfo();
-        }
-    });
 </script>
 </body>
 </html>
